@@ -107,12 +107,16 @@ function CreateModal({ onCreated, onCancel }: CreateModalProps) {
     try {
       await api.modules.create({
         id: form.id.trim(),
-        name: form.name.trim(),
-        description: form.description.trim(),
-        tags: form.tags
-          .split(',')
-          .map((s) => s.trim())
-          .filter(Boolean),
+        meta: {
+          name: form.name.trim(),
+          description: form.description.trim(),
+          tags: form.tags
+            .split(',')
+            .map((s) => s.trim())
+            .filter(Boolean),
+          contributors: [],
+          keywords: [],
+        },
       })
       toast(t('toast.moduleCreated'))
       onCreated(form.id.trim())

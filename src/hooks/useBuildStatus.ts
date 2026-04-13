@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react'
-import { api, BuildStatus } from '../api/client'
+import { api, BuildStatusResponse } from '../api/client'
 
 export function useBuildStatus() {
-  const [status, setStatus] = useState<BuildStatus | null>(null)
+  const [status, setStatus] = useState<BuildStatusResponse | null>(null)
   const [error, setError] = useState(false)
 
   const fetchStatus = useCallback(async () => {
@@ -25,9 +25,16 @@ export function useBuildStatus() {
     let sse: EventSource | null = null
     try {
       sse = new EventSource('/__dev/sse')
-      sse.addEventListener('build', () => {
-        fetchStatus()
-      })
+      sse.onmessage = (e) => {
+        try {
+          const msg = JSON.parse(e.data)
+          if (msg.type === 'reload' || msg.type === 'building' || msg.type === 'build-error') {
+            fetchStatus()
+          }
+        } catch {
+          // ignore parse errors
+        }
+      }
       sse.onerror = () => {
         sse?.close()
         sse = null

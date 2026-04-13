@@ -61,6 +61,7 @@
     },
     "scripts": {
       "addScript": "Add Script",
+      "addScriptPrompt": "Enter script ID (e.g.: helper):",
       "noScriptSelected": "Select a script to edit",
       "order": "Order",
       "scriptId": "Script ID",

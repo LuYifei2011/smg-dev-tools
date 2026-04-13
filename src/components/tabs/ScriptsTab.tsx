@@ -67,11 +67,15 @@ export default function ScriptsTab({
   }
 
   const handleAdd = async () => {
+    const scriptId = prompt(t('editor.scripts.addScriptPrompt') || 'Enter script ID (e.g.: helper):')
+    if (!scriptId) return
+    const id = scriptId.trim()
+    if (!id) return
     try {
-      const script = await api.scripts.create(moduleId)
+      const result = await api.scripts.create(moduleId, { id, content: 'when green flag clicked\n' })
       toast(t('toast.scriptCreated'))
       const list = await loadScripts()
-      const newId = script.id ?? list[list.length - 1]?.id ?? null
+      const newId = result.id ?? list[list.length - 1]?.id ?? null
       if (newId) {
         setSelectedId(newId)
         onScriptChange(newId)

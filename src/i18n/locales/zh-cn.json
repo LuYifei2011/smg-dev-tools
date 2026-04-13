@@ -61,6 +61,7 @@
     },
     "scripts": {
       "addScript": "添加脚本",
+      "addScriptPrompt": "输入脚本 ID（例如：helper）：",
       "noScriptSelected": "选择脚本以编辑",
       "order": "排序",
       "scriptId": "脚本 ID",

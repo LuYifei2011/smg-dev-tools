@@ -23,28 +23,31 @@ export default function BuildStatus() {
     )
   }
 
-  const statusClass = {
-    building: 'build-status-building',
-    ready: 'build-status-ready',
-    waiting: 'build-status-waiting',
-    error: 'build-status-error',
-  }[status.status]
+  const isBuilding = status.building
+  const isPending = status.pending
 
-  const statusText = {
-    building: t('buildStatus.building'),
-    ready: t('buildStatus.ready'),
-    waiting: t('buildStatus.waiting'),
-    error: status.message || t('buildStatus.error'),
-  }[status.status]
+  let statusClass = 'build-status-ready'
+  let statusText = t('buildStatus.ready')
+
+  if (isBuilding) {
+    statusClass = 'build-status-building'
+    statusText = t('buildStatus.building')
+  } else if (isPending) {
+    statusClass = 'build-status-waiting'
+    statusText = t('buildStatus.waiting')
+  }
+
+  const lastBuildDate =
+    status.lastBuildTime > 0 ? new Date(status.lastBuildTime).toLocaleTimeString() : null
 
   return (
     <div className={`build-status ${statusClass}`}>
-      <span className={`build-dot${status.status === 'building' ? ' build-dot-pulse' : ''}`} />
+      <span className={`build-dot${isBuilding || isPending ? ' build-dot-pulse' : ''}`} />
       <span>
         {statusText}
-        {status.status === 'ready' && status.lastBuild && (
+        {!isBuilding && !isPending && lastBuildDate && (
           <span className="build-time">
-            {' '}— {t('buildStatus.lastBuild')}{status.lastBuild}
+            {' '}— {t('buildStatus.lastBuild')}{lastBuildDate}
           </span>
         )}
       </span>

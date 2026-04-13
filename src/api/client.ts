@@ -43,10 +43,11 @@ export interface ModuleDetail {
   assets: Array<{ filename: string; size: number }>
 }
 
-export interface BuildStatus {
-  status: 'building' | 'ready' | 'waiting' | 'error'
-  lastBuild?: string
-  message?: string
+/** Shape returned by GET /api/build/status */
+export interface BuildStatusResponse {
+  building: boolean
+  pending: boolean
+  lastBuildTime: number
 }
 
 const BASE = '/api'
@@ -66,8 +67,14 @@ async function request<T>(
       signal: controller.signal,
     })
     if (!res.ok) {
-      const text = await res.text().catch(() => res.statusText)
-      throw new Error(text || res.statusText)
+      let message = res.statusText
+      try {
+        const json = await res.json()
+        message = json.error || JSON.stringify(json)
+      } catch {
+        // ignore
+      }
+      throw new Error(message)
     }
     const ct = res.headers.get('content-type') || ''
     if (ct.includes('application/json')) return res.json() as Promise<T>
@@ -79,52 +86,84 @@ async function request<T>(
 
 export const api = {
   modules: {
-    list: () => request<ModuleSummary[]>('GET', '/modules'),
-    get: (id: string) => request<ModuleDetail>('GET', `/modules/${id}`),
-    create: (data: { id: string; name: string; description: string; tags: string[] }) =>
-      request<ModuleDetail>('POST', '/modules', data),
-    updateMeta: (id: string, meta: ModuleDetail['meta']) =>
-      request<void>('PUT', `/modules/${id}/meta`, meta),
-    delete: (id: string) => request<void>('DELETE', `/modules/${id}`),
+    /** Returns the modules array (unwraps { modules: [...] }) */
+    list: () =>
+      request<{ modules: ModuleSummary[] }>('GET', '/modules').then((r) => r.modules),
+    get: (id: string) => request<ModuleDetail>('GET', `/modules/${encodeURIComponent(id)}`),
+    create: (data: { id: string; meta: { name: string; description: string; tags: string[]; contributors: string[]; keywords: string[] } }) =>
+      request<{ id: string; message: string }>('POST', '/modules', data),
+    updateMeta: (id: string, meta: Partial<ModuleDetail['meta']>) =>
+      request<void>('PUT', `/modules/${encodeURIComponent(id)}/meta`, meta),
+    delete: (id: string) => request<void>('DELETE', `/modules/${encodeURIComponent(id)}`),
   },
   scripts: {
-    list: (moduleId: string) => request<Script[]>('GET', `/modules/${moduleId}/scripts`),
-    create: (moduleId: string) =>
-      request<Script>('POST', `/modules/${moduleId}/scripts`),
+    /** Returns the scripts array (unwraps { scripts: [...] }) */
+    list: (moduleId: string) =>
+      request<{ scripts: Script[] }>('GET', `/modules/${encodeURIComponent(moduleId)}/scripts`).then(
+        (r) => r.scripts,
+      ),
+    create: (moduleId: string, data: { id: string; content?: string; order?: number }) =>
+      request<{ message: string; id: string; order: number }>(
+        'POST',
+        `/modules/${encodeURIComponent(moduleId)}/scripts`,
+        data,
+      ),
     update: (
       moduleId: string,
       scriptId: string,
       data: { content?: string; newId?: string; newOrder?: number },
-    ) => request<void>('PUT', `/modules/${moduleId}/scripts/${scriptId}`, data),
+    ) =>
+      request<{ message: string; id?: string; order?: number }>(
+        'PUT',
+        `/modules/${encodeURIComponent(moduleId)}/scripts/${encodeURIComponent(scriptId)}`,
+        data,
+      ),
     delete: (moduleId: string, scriptId: string) =>
-      request<void>('DELETE', `/modules/${moduleId}/scripts/${scriptId}`),
+      request<void>(
+        'DELETE',
+        `/modules/${encodeURIComponent(moduleId)}/scripts/${encodeURIComponent(scriptId)}`,
+      ),
   },
   i18n: {
     get: (moduleId: string, locale: string) =>
-      request<I18nData>('GET', `/modules/${moduleId}/i18n/${locale}`),
+      request<I18nData>(
+        'GET',
+        `/modules/${encodeURIComponent(moduleId)}/i18n/${encodeURIComponent(locale)}`,
+      ),
     save: (moduleId: string, locale: string, data: I18nData) =>
-      request<void>('PUT', `/modules/${moduleId}/i18n/${locale}`, data),
+      request<void>(
+        'PUT',
+        `/modules/${encodeURIComponent(moduleId)}/i18n/${encodeURIComponent(locale)}`,
+        data,
+      ),
     delete: (moduleId: string, locale: string) =>
-      request<void>('DELETE', `/modules/${moduleId}/i18n/${locale}`),
+      request<void>(
+        'DELETE',
+        `/modules/${encodeURIComponent(moduleId)}/i18n/${encodeURIComponent(locale)}`,
+      ),
   },
   demo: {
     upload: (moduleId: string, file: File) => {
       const form = new FormData()
       form.append('file', file)
-      return request<void>('POST', `/modules/${moduleId}/demo`, form)
+      return request<void>('POST', `/modules/${encodeURIComponent(moduleId)}/demo`, form)
     },
-    delete: (moduleId: string) => request<void>('DELETE', `/modules/${moduleId}/demo`),
+    delete: (moduleId: string) =>
+      request<void>('DELETE', `/modules/${encodeURIComponent(moduleId)}/demo`),
   },
   assets: {
     upload: (moduleId: string, file: File) => {
       const form = new FormData()
       form.append('file', file)
-      return request<void>('POST', `/modules/${moduleId}/assets`, form)
+      return request<void>('POST', `/modules/${encodeURIComponent(moduleId)}/assets`, form)
     },
     delete: (moduleId: string, filename: string) =>
-      request<void>('DELETE', `/modules/${moduleId}/assets/${filename}`),
+      request<void>(
+        'DELETE',
+        `/modules/${encodeURIComponent(moduleId)}/assets/${encodeURIComponent(filename)}`,
+      ),
   },
   build: {
-    status: () => request<BuildStatus>('GET', '/build/status'),
+    status: () => request<BuildStatusResponse>('GET', '/build/status'),
   },
 }
