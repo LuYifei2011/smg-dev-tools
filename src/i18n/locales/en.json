@@ -130,6 +130,7 @@
     "requestFailed": "Request failed: {{message}}",
     "invalidJson": "Invalid JSON format",
     "invalidOrder": "Order must be a non-negative integer",
+    "invalidLocale": "Invalid locale format (expected e.g. en, zh-cn)",
     "scriptIdRequired": "Script ID cannot be empty"
   },
   "language": "Language",

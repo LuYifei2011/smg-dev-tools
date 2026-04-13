@@ -3,7 +3,8 @@ export interface ModuleSummary {
   name: string
   description: string
   tags: string[]
-  contributors: string[]
+  /** Raw value from meta.json — may be a string or an array of strings */
+  contributors: string | string[]
   scriptCount: number
   hasDemo: boolean
   locales: string[]
@@ -34,7 +35,8 @@ export interface ModuleDetail {
     name: string
     description: string
     tags: string[]
-    contributors: string[]
+    /** Raw value from meta.json — may be a string or an array of strings */
+    contributors: string | string[]
     keywords: string[]
   }
   scripts: Script[]

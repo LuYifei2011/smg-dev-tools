@@ -14,12 +14,15 @@ export default function MetaTab({ moduleId, detail, onSaved, onDeleted }: MetaTa
   const { t } = useTranslation()
   const { toast } = useToast()
 
+  const normalizeContributors = (v: string | string[]) =>
+    Array.isArray(v) ? v.join(', ') : v ?? ''
+
   const [form, setForm] = useState({
     name: detail.meta.name,
     description: detail.meta.description,
     tags: detail.meta.tags.join(', '),
     keywords: detail.meta.keywords.join(', '),
-    contributors: detail.meta.contributors.join(', '),
+    contributors: normalizeContributors(detail.meta.contributors),
   })
   const [saving, setSaving] = useState(false)
 
@@ -29,7 +32,7 @@ export default function MetaTab({ moduleId, detail, onSaved, onDeleted }: MetaTa
       description: detail.meta.description,
       tags: detail.meta.tags.join(', '),
       keywords: detail.meta.keywords.join(', '),
-      contributors: detail.meta.contributors.join(', '),
+      contributors: normalizeContributors(detail.meta.contributors),
     })
   }, [detail])
 
