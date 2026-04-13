@@ -58,22 +58,29 @@ export default function ModuleList({
         ) : filtered.length === 0 ? (
           <div className="list-empty">—</div>
         ) : (
-          filtered.map((m) => (
-            <button
-              key={m.id}
-              className={`module-item${selectedId === m.id ? ' selected' : ''}`}
-              onClick={() => onSelect(m.id)}
-            >
-              <span className="module-item-id">{m.id}</span>
-              <span className="module-item-name">{m.name}</span>
-              <span className="module-item-meta">
-                {m.scriptCount > 0 && (
-                  <span className="badge">{m.scriptCount}</span>
-                )}
-                {m.hasDemo && <span className="badge badge-demo">demo</span>}
-              </span>
-            </button>
-          ))
+          filtered.map((m) => {
+            const isDev = m.id.startsWith('.')
+            return (
+              <button
+                key={m.id}
+                className={`module-item${selectedId === m.id ? ' selected' : ''}${isDev ? ' module-item-dev' : ''}`}
+                onClick={() => onSelect(m.id)}
+                title={isDev ? t('editor.devModuleHint') : undefined}
+              >
+                <span className="module-item-id">
+                  {isDev && <span className="dev-dot" aria-hidden="true">⚙</span>}
+                  {m.id}
+                </span>
+                <span className="module-item-name">{m.name}</span>
+                <span className="module-item-meta">
+                  {m.scriptCount > 0 && (
+                    <span className="badge">{m.scriptCount}</span>
+                  )}
+                  {m.hasDemo && <span className="badge badge-demo">demo</span>}
+                </span>
+              </button>
+            )
+          })
         )}
       </div>
       {showCreate && (
@@ -139,7 +146,7 @@ function CreateModal({ onCreated, onCancel }: CreateModalProps) {
               value={form.id}
               onChange={(e) => setForm({ ...form, id: e.target.value })}
               placeholder="my-module"
-              pattern="[a-z0-9-]+"
+              pattern="[a-z0-9\.\-]+"
               required
             />
             <span className="field-hint">{t('editor.createModal.idHint')}</span>

@@ -41,6 +41,7 @@
     "search": "Search modules...",
     "createModule": "New Module",
     "noModuleSelected": "Select a module from the left to start editing",
+    "devModuleHint": "Special dev-only module (dot prefix)",
     "tabs": {
       "meta": "Meta",
       "scripts": "Scripts",
@@ -99,7 +100,7 @@
     "createModal": {
       "title": "Create New Module",
       "id": "Module ID",
-      "idHint": "Only lowercase letters, numbers, hyphens. E.g.: my-module",
+      "idHint": "Lowercase letters, numbers, hyphens, dots. Dot prefix (e.g. .dev-module) marks dev-only modules.",
       "name": "Name",
       "description": "Description",
       "tags": "Tags",

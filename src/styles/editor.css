@@ -100,6 +100,10 @@
 .module-item-name { font-size: 13px; color: var(--text); }
 .module-item-meta { display: flex; gap: 4px; margin-top: 2px; }
 
+/* dev-only (dot-prefix) modules */
+.module-item-dev { border-left: 2px solid var(--warning); padding-left: 8px; }
+.dev-dot { color: var(--warning); font-size: 10px; margin-right: 3px; }
+
 /* ── Editor Main ────────────────────────────────────────── */
 .editor-main {
   flex: 1;
