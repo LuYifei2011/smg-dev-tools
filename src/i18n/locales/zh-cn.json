@@ -1,0 +1,135 @@
+{
+  "appName": "开发工具",
+  "devBadge": "开发",
+  "backToSite": "← 返回站点",
+  "buildIssues": "构建问题",
+  "github": "GitHub",
+  "devTools": "开发工具",
+  "buildAndDebug": "构建与调试",
+  "buildStatus": {
+    "loading": "正在获取构建状态…",
+    "building": "构建中…",
+    "waiting": "等待构建…",
+    "ready": "构建完成，服务器就绪",
+    "error": "无法获取构建状态（开发服务器是否正在运行？）",
+    "lastBuild": "上次构建："
+  },
+  "tools": {
+    "editor": {
+      "name": "模块编辑器",
+      "desc": "可视化创建和编辑模块内容，包括脚本、元数据和多语言翻译。"
+    },
+    "covers": {
+      "name": "封面预览",
+      "desc": "浏览所有模块的 OG 封面图片，切换语言预览，快速检查生成结果。"
+    },
+    "buildIssues": {
+      "name": "构建问题",
+      "desc": "查看上次构建的警告和错误，定位缺少的内容或配置问题。"
+    },
+    "searchIndexEn": {
+      "name": "搜索索引 (en)",
+      "desc": "查看英文搜索索引 JSON，验证模块数据是否正确写入。"
+    },
+    "searchIndexZhCn": {
+      "name": "搜索索引 (zh-cn)",
+      "desc": "查看简体中文搜索索引 JSON，验证本地化数据。"
+    }
+  },
+  "editor": {
+    "title": "模块编辑器",
+    "search": "搜索模块…",
+    "createModule": "新建模块",
+    "noModuleSelected": "从左侧选择一个模块开始编辑",
+    "tabs": {
+      "meta": "元数据",
+      "scripts": "脚本",
+      "i18n": "翻译",
+      "assets": "资源"
+    },
+    "meta": {
+      "id": "模块 ID",
+      "name": "名称",
+      "description": "描述",
+      "tags": "标签（逗号分隔）",
+      "keywords": "关键词（逗号分隔）",
+      "contributors": "贡献者",
+      "contributorsHint": "格式：gh/用户名、sc/用户名 或普通名称",
+      "save": "保存元数据",
+      "deleteModule": "删除模块",
+      "viewModule": "查看模块页面"
+    },
+    "scripts": {
+      "addScript": "添加脚本",
+      "noScriptSelected": "选择脚本以编辑",
+      "order": "排序",
+      "scriptId": "脚本 ID",
+      "save": "保存脚本",
+      "delete": "删除脚本",
+      "preview": "预览",
+      "editor": "编辑器",
+      "toggleLayout": "切换布局"
+    },
+    "i18n": {
+      "selectLocale": "选择语言…",
+      "noLocaleSelected": "选择语言以编辑翻译",
+      "name": "名称",
+      "description": "描述",
+      "variables": "变量（JSON）",
+      "lists": "列表（JSON）",
+      "events": "事件（JSON）",
+      "scriptTitles": "脚本标题（JSON）",
+      "procedures": "自制积木（JSON）",
+      "procedureParams": "积木参数（JSON）",
+      "save": "保存翻译",
+      "delete": "删除翻译",
+      "newLocale": "新语言代码"
+    },
+    "assets": {
+      "demo": "演示文件（sb3）",
+      "demoUploaded": "demo.sb3 已上传",
+      "noDemo": "未上传演示",
+      "uploadDemo": "上传演示",
+      "deleteDemo": "删除演示",
+      "assets": "资源文件",
+      "uploadAsset": "上传资源",
+      "noAssets": "未上传资源"
+    },
+    "createModal": {
+      "title": "创建新模块",
+      "id": "模块 ID",
+      "idHint": "只允许小写字母、数字、连字符。例如：my-module",
+      "name": "名称",
+      "description": "描述",
+      "tags": "标签",
+      "create": "创建",
+      "cancel": "取消"
+    },
+    "confirmDelete": "确定要删除模块「{{name}}」吗？此操作不可撤销！",
+    "confirmDeleteScript": "确定要删除脚本「{{id}}」吗？",
+    "confirmDeleteI18n": "确定要删除「{{locale}}」的翻译吗？",
+    "confirmDeleteDemo": "确定要删除 demo.sb3 吗？",
+    "confirmDeleteAsset": "确定要删除「{{filename}}」吗？"
+  },
+  "toast": {
+    "metaSaved": "元数据已保存",
+    "moduleDeleted": "模块已删除",
+    "moduleCreated": "模块已创建",
+    "scriptSaved": "脚本已保存",
+    "scriptDeleted": "脚本已删除",
+    "scriptCreated": "脚本已添加",
+    "i18nSaved": "翻译已保存",
+    "i18nDeleted": "翻译已删除",
+    "demoUploaded": "演示已上传",
+    "demoDeleted": "演示已删除",
+    "assetUploaded": "资源已上传",
+    "assetDeleted": "资源已删除",
+    "requestTimeout": "请求超时：操作时间过长，请重试",
+    "requestFailed": "请求失败：{{message}}",
+    "invalidJson": "JSON 格式无效",
+    "invalidOrder": "排序必须为非负整数",
+    "scriptIdRequired": "脚本 ID 不能为空"
+  },
+  "language": "语言",
+  "footer": "开发工具 — Scratch 模块图库 · 仅在 IS_DEV=1 构建中可用 · "
+}
