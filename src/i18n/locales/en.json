@@ -133,5 +133,18 @@
     "scriptIdRequired": "Script ID cannot be empty"
   },
   "language": "Language",
+  "covers": {
+    "title": "🖼 Cover Preview",
+    "back": "← Back to Dev Tools",
+    "locale": "Locale:",
+    "stats": "{{count}} modules + home",
+    "loading": "Loading module list…",
+    "loadError": "Failed to load module list: {{message}}\nPlease make sure the dev server is running.",
+    "retry": "Retry",
+    "viewPage": "View page",
+    "rawImage": "Raw",
+    "coverMissing": "Cover image not found",
+    "homeName": "Home"
+  },
   "footer": "Dev Tools — Scratch Modules Gallery · Only available in IS_DEV=1 builds · "
 }

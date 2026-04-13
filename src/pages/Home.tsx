@@ -13,8 +13,8 @@ export default function Home() {
   const { t } = useTranslation()
 
   const tools: ToolCard[] = [
-    { key: 'editor', href: '/__dev/editor' },
-    { key: 'covers', href: '/__dev/covers/', external: true },
+    { key: 'editor', href: '/editor' },
+    { key: 'covers', href: '/covers' },
     { key: 'buildIssues', href: '/zh-cn/issues/', external: true },
   ]
 
@@ -40,7 +40,7 @@ export default function Home() {
                 <p className="tool-card-desc">{t(`tools.${tool.key}.desc`)}</p>
               </a>
             ) : (
-              <Link key={tool.key} to={tool.href.replace('/__dev', '')} className="tool-card">
+              <Link key={tool.key} to={tool.href} className="tool-card">
                 <h2 className="tool-card-name">{t(`tools.${tool.key}.name`)}</h2>
                 <p className="tool-card-desc">{t(`tools.${tool.key}.desc`)}</p>
               </Link>

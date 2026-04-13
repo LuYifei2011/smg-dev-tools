@@ -31,6 +31,9 @@ i18n
     lng: initialLng,
     fallbackLng: 'en',
     supportedLngs: ['en', 'zh-cn'],
+    // Force synchronous initialization so components always see the
+    // correct language on first render (resources are bundled inline).
+    initImmediate: false,
     interpolation: {
       escapeValue: false,
     },

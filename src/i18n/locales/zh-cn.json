@@ -133,5 +133,18 @@
     "scriptIdRequired": "脚本 ID 不能为空"
   },
   "language": "语言",
+  "covers": {
+    "title": "🖼 封面图预览",
+    "back": "← 返回 Dev Tools",
+    "locale": "语言：",
+    "stats": "共 {{count}} 个模块 + 主页",
+    "loading": "加载模块列表…",
+    "loadError": "加载模块列表失败：{{message}}\n请确保开发服务器正在运行。",
+    "retry": "重试",
+    "viewPage": "查看页面",
+    "rawImage": "原图",
+    "coverMissing": "封面图不存在",
+    "homeName": "首页"
+  },
   "footer": "开发工具 — Scratch 模块图库 · 仅在 IS_DEV=1 构建中可用 · "
 }
