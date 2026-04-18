@@ -1,0 +1,151 @@
+{
+  "appName": "Dev Tools",
+  "devBadge": "DEV",
+  "backToSite": "← Back to site",
+  "buildIssues": "Build Issues",
+  "github": "GitHub",
+  "devTools": "Dev Tools",
+  "buildAndDebug": "Build & Debug",
+  "buildStatus": {
+    "loading": "Loading build status...",
+    "building": "Building...",
+    "waiting": "Waiting for build...",
+    "ready": "Build complete, server ready",
+    "error": "Cannot get build status (is the dev server running?)",
+    "lastBuild": "Last build: "
+  },
+  "tools": {
+    "editor": {
+      "name": "Module Editor",
+      "desc": "Visually create and edit module content, including scripts, metadata, and multilingual translations."
+    },
+    "covers": {
+      "name": "Cover Preview",
+      "desc": "Browse OG cover images for all modules, switch languages to preview, quickly check generated results."
+    },
+    "buildIssues": {
+      "name": "Build Issues",
+      "desc": "View warnings and errors from the last build, locate missing content or config issues."
+    },
+    "searchIndexEn": {
+      "name": "Search Index (en)",
+      "desc": "View the English search index JSON, verify module data is correctly written."
+    },
+    "searchIndexZhCn": {
+      "name": "Search Index (zh-cn)",
+      "desc": "View the simplified Chinese search index JSON, verify localization data."
+    }
+  },
+  "editor": {
+    "title": "Module Editor",
+    "search": "Search modules...",
+    "createModule": "New Module",
+    "noModuleSelected": "Select a module from the left to start editing",
+    "devModuleHint": "Special dev-only module (dot prefix)",
+    "tabs": {
+      "meta": "Meta",
+      "scripts": "Scripts",
+      "i18n": "Translations",
+      "assets": "Assets"
+    },
+    "meta": {
+      "id": "Module ID",
+      "name": "Name",
+      "description": "Description",
+      "tags": "Tags (comma-separated)",
+      "keywords": "Keywords (comma-separated)",
+      "contributors": "Contributors",
+      "contributorsHint": "Format: gh/username, sc/username or plain name",
+      "save": "Save Meta",
+      "deleteModule": "Delete Module",
+      "viewModule": "View Module Page"
+    },
+    "scripts": {
+      "addScript": "Add Script",
+      "addScriptPrompt": "Enter script ID (e.g.: helper):",
+      "noScriptSelected": "Select a script to edit",
+      "order": "Order",
+      "scriptId": "Script ID",
+      "save": "Save Script",
+      "delete": "Delete Script",
+      "preview": "Preview",
+      "editor": "Editor",
+      "toggleLayout": "Toggle layout"
+    },
+    "i18n": {
+      "selectLocale": "Select language...",
+      "noLocaleSelected": "Select a language to edit translations",
+      "name": "Name",
+      "description": "Description",
+      "variables": "Variables (JSON)",
+      "lists": "Lists (JSON)",
+      "events": "Events (JSON)",
+      "scriptTitles": "Script Titles (JSON)",
+      "procedures": "Procedures (JSON)",
+      "procedureParams": "Procedure Params (JSON)",
+      "save": "Save Translation",
+      "delete": "Delete Translation",
+      "newLocale": "New locale code"
+    },
+    "assets": {
+      "demo": "Demo File (sb3)",
+      "demoUploaded": "demo.sb3 uploaded",
+      "noDemo": "No demo uploaded",
+      "uploadDemo": "Upload Demo",
+      "deleteDemo": "Delete Demo",
+      "assets": "Asset Files",
+      "uploadAsset": "Upload Asset",
+      "noAssets": "No assets uploaded"
+    },
+    "createModal": {
+      "title": "Create New Module",
+      "id": "Module ID",
+      "idHint": "Lowercase letters, numbers, hyphens, dots. Dot prefix (e.g. .dev-module) marks dev-only modules.",
+      "name": "Name",
+      "description": "Description",
+      "tags": "Tags",
+      "create": "Create",
+      "cancel": "Cancel"
+    },
+    "confirmDelete": "Are you sure you want to delete module \"{{name}}\"? This action cannot be undone!",
+    "confirmDeleteScript": "Are you sure you want to delete script \"{{id}}\"?",
+    "confirmDeleteI18n": "Are you sure you want to delete translation for \"{{locale}}\"?",
+    "confirmDeleteDemo": "Are you sure you want to delete demo.sb3?",
+    "confirmDeleteAsset": "Are you sure you want to delete \"{{filename}}\"?"
+  },
+  "toast": {
+    "metaSaved": "Metadata saved",
+    "moduleDeleted": "Module deleted",
+    "moduleCreated": "Module created",
+    "scriptSaved": "Script saved",
+    "scriptDeleted": "Script deleted",
+    "scriptCreated": "Script added",
+    "i18nSaved": "Translation saved",
+    "i18nDeleted": "Translation deleted",
+    "demoUploaded": "Demo uploaded",
+    "demoDeleted": "Demo deleted",
+    "assetUploaded": "Asset uploaded",
+    "assetDeleted": "Asset deleted",
+    "requestTimeout": "Request timeout: operation took too long, please retry",
+    "requestFailed": "Request failed: {{message}}",
+    "invalidJson": "Invalid JSON format",
+    "invalidOrder": "Order must be a non-negative integer",
+    "invalidLocale": "Invalid locale format (expected e.g. en, zh-cn)",
+    "scriptIdRequired": "Script ID cannot be empty"
+  },
+  "language": "Language",
+  "covers": {
+    "title": "🖼 Cover Preview",
+    "back": "← Back to Dev Tools",
+    "locale": "Locale:",
+    "stats": "{{count}} modules + home",
+    "loading": "Loading module list…",
+    "loadError": "Failed to load module list: {{message}}\nPlease make sure the dev server is running.",
+    "retry": "Retry",
+    "viewPage": "View page",
+    "rawImage": "Raw",
+    "coverMissing": "Cover image not found",
+    "homeName": "Home"
+  },
+  "footer": "Dev Tools — Scratch Modules Gallery · Only available in IS_DEV=1 builds · "
+}
