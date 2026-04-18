@@ -8,32 +8,21 @@ const savedLang =
     ? localStorage.getItem('smg-dev-tools-lang') ?? ''
     : ''
 
-const detectedLang = savedLang ||
+const initialLng = savedLang ||
   (typeof navigator !== 'undefined'
     ? navigator.language.toLowerCase().replace(/_/g, '-')
     : '')
-
-// Resolve to a supported language; prefer zh-cn for any zh-* variant
-let initialLng: string
-if (detectedLang === 'zh-cn' || detectedLang.startsWith('zh')) {
-  initialLng = 'zh-cn'
-} else {
-  initialLng = 'en'
-}
 
 i18n
   .use(initReactI18next)
   .init({
     resources: {
       en: { translation: en },
-      'zh-cn': { translation: zhCn },
+      'zh-CN': { translation: zhCn },
     },
     lng: initialLng,
     fallbackLng: 'en',
-    supportedLngs: ['en', 'zh-cn'],
-    // Force synchronous initialization so components always see the
-    // correct language on first render (resources are bundled inline).
-    initImmediate: false,
+    supportedLngs: ['en', 'zh-CN'],
     interpolation: {
       escapeValue: false,
     },
