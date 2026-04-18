@@ -4,6 +4,7 @@ import { api, I18nData } from '../../api/client'
 import { useToast } from '../../hooks/useToast'
 
 const COMMON_LOCALES = ['en', 'zh-cn', 'zh-tw', 'ja', 'ko', 'de', 'fr', 'es', 'pt']
+const LOCALE_RE = /^[a-z]{2}(-[a-z]{2})?$/
 
 const JSON_FIELDS: (keyof I18nData & string)[] = [
   'variables',
@@ -69,6 +70,14 @@ export default function I18nTab({
     onLocaleChange(val || null)
   }
 
+  const handleCustomLocale = (val: string) => {
+    if (!LOCALE_RE.test(val)) {
+      toast(t('toast.invalidLocale'), 'error')
+      return
+    }
+    handleLocaleChange(val)
+  }
+
   const handleSave = async () => {
     // Validate JSON fields
     const parsed: Record<string, Record<string, string>> = {}
@@ -131,7 +140,7 @@ export default function I18nTab({
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               const val = (e.target as HTMLInputElement).value.trim()
-              if (val) handleLocaleChange(val)
+              if (val) handleCustomLocale(val)
             }
           }}
         />

@@ -130,6 +130,7 @@
     "requestFailed": "请求失败：{{message}}",
     "invalidJson": "JSON 格式无效",
     "invalidOrder": "排序必须为非负整数",
+    "invalidLocale": "语言代码格式不合法（应如 en、zh-cn）",
     "scriptIdRequired": "脚本 ID 不能为空"
   },
   "language": "语言",
